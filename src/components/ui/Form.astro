@@ -117,7 +117,16 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
     }
 
     <!-- Cloudflare Turnstile Widget -->
-    <div class="cf-turnstile mb-6" data-sitekey="0x4AAAAAABd9Keugc-Mc3KxL" data-theme="dark"></div>
+    <div
+      class="cf-turnstile mb-6"
+      data-sitekey="0x4AAAAAABd9Keugc-Mc3KxL"
+      data-theme="dark"
+      data-callback="onTurnstileSuccess"
+      data-error-callback="onTurnstileError"
+    >
+    </div>
+
+    <div id="turnstile-error" class="text-red-400 text-sm mt-1 hidden">Please complete the CAPTCHA challenge.</div>
 
     {
       disclaimer && (
@@ -224,26 +233,25 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
 </style>
 
 <script is:inline>
+  // Global variables to track Turnstile state
+  let turnstileToken = null;
+  let turnstileReady = false;
+
+  // Turnstile callback functions
+  await function onTurnstileSuccess(token) {
+    turnstileToken = token;
+    document.getElementById('turnstile-error').classList.add('hidden');
+  };
+
+  await function onTurnstileError() {
+    turnstileToken = null;
+    document.getElementById('turnstile-error').classList.remove('hidden');
+  };
+
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('contact-form');
     const result = document.getElementById('result');
     const submitButton = form.querySelector('button[type="submit"]');
-
-    // Initialize Turnstile
-    function initTurnstile() {
-      return new Promise((resolve) => {
-        if (window.turnstile) {
-          resolve();
-        } else {
-          const checkTurnstile = setInterval(() => {
-            if (window.turnstile) {
-              clearInterval(checkTurnstile);
-              resolve();
-            }
-          }, 100);
-        }
-      });
-    }
 
     // Form submission handler
     form.addEventListener('submit', async function (e) {
@@ -275,13 +283,8 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
         return;
       }
 
-      // Wait for Turnstile to be ready
-      await initTurnstile();
-
-      // Check for Turnstile response
-      const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
-
-      if (!turnstileResponse || !turnstileResponse.value) {
+      // Check for Turnstile token
+      if (!turnstileToken) {
         result.innerHTML = '<span class="text-red-500">Please complete the security check.</span>';
         return;
       }
@@ -291,6 +294,16 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
       submitButton.querySelector('span').textContent = 'Sending...';
 
       try {
+        // Create hidden input for Turnstile token if it doesn't exist
+        let tokenInput = form.querySelector('input[name="cf-turnstile-response"]');
+        if (!tokenInput) {
+          tokenInput = document.createElement('input');
+          tokenInput.type = 'hidden';
+          tokenInput.name = 'cf-turnstile-response';
+          form.appendChild(tokenInput);
+        }
+        tokenInput.value = turnstileToken;
+
         // Prepare form data
         const formData = new FormData(form);
 
@@ -309,6 +322,7 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
           // Reset Turnstile
           if (window.turnstile) {
             window.turnstile.reset();
+            turnstileToken = null;
           }
         } else {
           throw new Error(data.message || 'Form submission failed');
