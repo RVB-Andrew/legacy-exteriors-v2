@@ -233,29 +233,48 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
 </style>
 
 <script is:inline>
-  // Global variables to track Turnstile state
+  // Global variables for Turnstile
   let turnstileToken = null;
-  let turnstileReady = false;
-
-  // Turnstile callback functions
-  await function onTurnstileSuccess(token) {
-    turnstileToken = token;
-    document.getElementById('turnstile-error').classList.add('hidden');
-  };
-
-  await function onTurnstileError() {
-    turnstileToken = null;
-    document.getElementById('turnstile-error').classList.remove('hidden');
-  };
+  let turnstileWidgetId = null;
 
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('contact-form');
     const result = document.getElementById('result');
     const submitButton = form.querySelector('button[type="submit"]');
 
+    // Initialize Turnstile
+    function initTurnstile() {
+      if (window.turnstile) {
+        turnstileWidgetId = turnstile.render('.cf-turnstile', {
+          sitekey: '0x4AAAAAABd9Keugc-Mc3KxL',
+          theme: 'dark',
+          callback: function (token) {
+            turnstileToken = token;
+            document.getElementById('turnstile-error').classList.add('hidden');
+          },
+          'error-callback': function () {
+            turnstileToken = null;
+            document.getElementById('turnstile-error').classList.remove('hidden');
+          },
+        });
+      }
+    }
+
+    // Initialize on load
+    initTurnstile();
+
+    // Fallback if Turnstile doesn't load immediately
+    const turnstileCheckInterval = setInterval(() => {
+      if (window.turnstile && !turnstileWidgetId) {
+        initTurnstile();
+        clearInterval(turnstileCheckInterval);
+      }
+    }, 100);
+
     // Form submission handler
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      e.stopPropagation(); // Additional prevention
 
       // Reset previous messages
       result.innerHTML = '';
@@ -286,12 +305,16 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
       // Check for Turnstile token
       if (!turnstileToken) {
         result.innerHTML = '<span class="text-red-500">Please complete the security check.</span>';
+        if (window.turnstile && turnstileWidgetId) {
+          turnstile.reset(turnstileWidgetId);
+        }
         return;
       }
 
       // Disable submit button
       submitButton.disabled = true;
-      submitButton.querySelector('span').textContent = 'Sending...';
+      const originalButtonText = submitButton.innerHTML;
+      submitButton.innerHTML = '<span>Sending...</span>';
 
       try {
         // Create hidden input for Turnstile token if it doesn't exist
@@ -304,13 +327,14 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
         }
         tokenInput.value = turnstileToken;
 
-        // Prepare form data
+        // Submit to Web3Forms via Fetch API
         const formData = new FormData(form);
-
-        // Submit to Web3Forms
         const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           body: formData,
+          headers: {
+            Accept: 'application/json',
+          },
         });
 
         const data = await response.json();
@@ -320,8 +344,8 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
           form.reset();
 
           // Reset Turnstile
-          if (window.turnstile) {
-            window.turnstile.reset();
+          if (window.turnstile && turnstileWidgetId) {
+            turnstile.reset(turnstileWidgetId);
             turnstileToken = null;
           }
         } else {
@@ -331,13 +355,21 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
         console.error('Error:', error);
         result.innerHTML =
           '<span class="text-red-500">Sorry, there was an error sending your message. Please try again.</span>';
+
+        // Reset Turnstile on error
+        if (window.turnstile && turnstileWidgetId) {
+          turnstile.reset(turnstileWidgetId);
+          turnstileToken = null;
+        }
       } finally {
         // Re-enable submit button
         submitButton.disabled = false;
-        submitButton.querySelector('span').textContent = 'Contact us';
+        submitButton.innerHTML = originalButtonText;
       }
     });
+
+    // Remove any default form action that might cause page reload
+    form.removeAttribute('action');
+    form.removeAttribute('method');
   });
 </script>
-
-<script src="https://web3forms.com/client/script.js" async defer></script>
