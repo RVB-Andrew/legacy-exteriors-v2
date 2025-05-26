@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 
 const { inputs, textarea, disclaimer, button = 'Contact us', description = '', services = [] } = Astro.props;
 
-// Add your keys directly here
+// Your Web3Forms Access Key
 const WEB3FORMS_ACCESS_KEY = 'a0ce7ea2-4ebd-49f8-bdc4-ddc760a8f371';
 
 // Default services if none provided
@@ -22,15 +22,15 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
 ---
 
 <form
-  action="https://api.web3forms.com/submit"
-  method="POST"
   id="contact-form"
-  class="relative p-4 rounded-lg border border-green-800/50 bg-[#050505] overflow-hidden needs-validation"
+  class="relative p-4 rounded-lg border border-green-800/50 bg-[#050505] overflow-hidden"
   data-astro-reload
-  novalidate
 >
   <!-- Web3Forms required fields -->
   <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+
+  <!-- Honeypot Spam Protection -->
+  <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
   <!-- Decorative elements -->
   <div class="absolute top-0 right-0 w-40 h-40 bg-green-900/20 rounded-full -mt-20 -mr-20 z-0"></div>
@@ -65,7 +65,7 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
                   required={true}
                   class="py-3 px-4 block w-full text-md rounded-lg border-2 border-gray-800 hover:border-green-900 bg-[#0a0a0a] text-white placeholder-gray-500 focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/50 transition-all duration-300"
                 />
-                <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
+                <div class="invalid-feedback text-red-400 text-sm mt-1 hidden">
                   Please provide your {label.toLowerCase() || name}.
                 </div>
               </div>
@@ -93,7 +93,7 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
           <Icon name="tabler:chevron-down" class="w-5 h-5 group-hover:text-green-500 transition-colors duration-300" />
         </div>
       </div>
-      <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">Please select a service.</div>
+      <div class="invalid-feedback text-red-400 text-sm mt-1 hidden">Please select a service.</div>
     </div>
 
     {
@@ -111,7 +111,7 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
             required
             class="py-3 px-4 block w-full text-md rounded-lg border-2 border-gray-800 hover:border-green-900 bg-[#0a0a0a] text-white placeholder-gray-500 focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/50 resize-none transition-all duration-300"
           />
-          <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">Please enter your message.</div>
+          <div class="invalid-feedback text-red-400 text-sm mt-1 hidden">Please enter your message.</div>
         </div>
       )
     }
@@ -162,63 +162,28 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
     }
   </div>
 </form>
+
 <style>
-  .invalid-feedback,
-  .empty-feedback {
+  .invalid-feedback {
     display: none;
   }
 
-  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
-    display: block;
-  }
-
-  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
-    display: block;
-  }
-
-  /* Add these to the end of your existing CSS in Form.astro */
-  .was-validated input[type='checkbox']:invalid {
-    border-color: #dc3545 !important;
-  }
-
-  .was-validated input[type='checkbox']:invalid ~ .empty-feedback {
+  .was-validated .invalid-feedback {
     display: block !important;
   }
 
-  /* Show select invalid state */
-  .was-validated select:invalid ~ .empty-feedback,
-  .was-validated select:invalid ~ .invalid-feedback {
-    display: block;
+  .was-validated input:invalid,
+  .was-validated select:invalid,
+  .was-validated textarea:invalid {
+    border-color: #dc3545 !important;
   }
 
-  /* Show checkbox invalid state */
-  .was-validated input[type='checkbox']:invalid ~ .empty-feedback {
-    display: block;
-  }
-
-  .is-invalid,
-  .was-validated :invalid {
-    border-color: #dc3545;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1.5em;
-  }
-
-  /* Style the feedback messages */
-  .invalid-feedback,
-  .empty-feedback {
-    color: #dc3545;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-  }
-  
   /* Create a disabled button style */
-  button[type="submit"]:disabled {
+  button[type='submit']:disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
-  
+
   /* Subtle pulsing highlight effect on form focus */
   form:focus-within::before {
     content: '';
@@ -257,61 +222,99 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
     box-shadow: 0 4px 12px rgba(4, 88, 35, 0.15);
   }
 </style>
-<script is:inline>
-(function () {
-    "use strict";
 
-    
-    // Initialize Turnstile with error handling
-    function initTurnstile() {
-        // Ensure the container exists
-        const container = document.querySelector('.cf-turnstile');
-        if (!container) {
-            console.warn('Turnstile container not found');
-            return;
-        }
-        
-        // Ensure the script is loaded
-        if (!window.turnstile) {
-            console.warn('Turnstile script not loaded yet');
-            loadTurnstileScript();
-            return;
-        }
+<script is:inline>
+  // Wait for Turnstile to load
+  function waitForTurnstile(callback) {
+    if (window.turnstile) {
+      callback();
+    } else {
+      setTimeout(() => waitForTurnstile(callback), 100);
     }
-    
-    /* Rest of your form validation and submission code */
-    const forms = document.querySelectorAll(".needs-validation");
-    const result = document.getElementById("result");
-    
-    Array.prototype.slice.call(forms).forEach(function (form) {
-        form.addEventListener(
-            "submit",
-            function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    form.querySelectorAll(":invalid")[0].focus();
-                } else {
-                    // Verify Turnstile token exists
-                    const token = document.querySelector('[name="cf-turnstile-response"]')?.value;
-                    if (!token) {
-                        event.preventDefault();
-                        result.innerHTML = "Please complete the CAPTCHA";
-                        result.classList.remove("text-gray-500");
-                        result.classList.add("text-red-500");
-                        // Force Turnstile reinitialization if missing
-                        if (!turnstileInitialized) initTurnstile();
-                        return;
-                    }
-                    
-                    /* Rest of your form submission logic */
-                }
-                form.classList.add("was-validated");
-            },
-            false
-        );
+  }
+
+  // Initialize form when DOM is ready
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contact-form');
+    const result = document.getElementById('result');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    // Form submission handler
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Basic validation
+      const requiredFields = form.querySelectorAll('[required]');
+      let isValid = true;
+
+      requiredFields.forEach((field) => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('border-red-500');
+          const feedback = field.parentElement.querySelector('.invalid-feedback');
+          if (feedback) feedback.classList.remove('hidden');
+        } else {
+          field.classList.remove('border-red-500');
+          const feedback = field.parentElement.querySelector('.invalid-feedback');
+          if (feedback) feedback.classList.add('hidden');
+        }
+      });
+
+      if (!isValid) {
+        result.innerHTML = '<span class="text-red-500">Please fill in all required fields.</span>';
+        return;
+      }
+
+      // Check for Turnstile token
+      waitForTurnstile(() => {
+        const turnstileResponse = form.querySelector('[name="cf-turnstile-response"]');
+
+        if (!turnstileResponse || !turnstileResponse.value) {
+          result.innerHTML = '<span class="text-red-500">Please complete the security check.</span>';
+          return;
+        }
+
+        // Disable submit button
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span>Sending...</span>';
+
+        // Prepare form data
+        const formData = new FormData(form);
+
+        // Submit to Web3Forms
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              result.innerHTML =
+                '<span class="text-green-500">Thank you! Your message has been sent successfully.</span>';
+              form.reset();
+
+              // Reset Turnstile
+              if (window.turnstile) {
+                window.turnstile.reset();
+              }
+            } else {
+              throw new Error(data.message || 'Form submission failed');
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            result.innerHTML =
+              '<span class="text-red-500">Sorry, there was an error sending your message. Please try again.</span>';
+          })
+          .finally(() => {
+            // Re-enable submit button
+            submitButton.disabled = false;
+            submitButton.innerHTML =
+              '<span>Contact Us</span><svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>';
+          });
+      });
     });
-})();
+  });
 </script>
 
 <script src="https://web3forms.com/client/script.js" async defer></script>
