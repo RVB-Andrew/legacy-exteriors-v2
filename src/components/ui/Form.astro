@@ -224,24 +224,34 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
 </style>
 
 <script is:inline>
-  // Wait for Turnstile to load
-  function waitForTurnstile(callback) {
-    if (window.turnstile) {
-      callback();
-    } else {
-      setTimeout(() => waitForTurnstile(callback), 100);
-    }
-  }
-
-  // Initialize form when DOM is ready
   document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('contact-form');
     const result = document.getElementById('result');
     const submitButton = form.querySelector('button[type="submit"]');
 
+    // Initialize Turnstile
+    function initTurnstile() {
+      return new Promise((resolve) => {
+        if (window.turnstile) {
+          resolve();
+        } else {
+          const checkTurnstile = setInterval(() => {
+            if (window.turnstile) {
+              clearInterval(checkTurnstile);
+              resolve();
+            }
+          }, 100);
+        }
+      });
+    }
+
     // Form submission handler
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+
+      // Reset previous messages
+      result.innerHTML = '';
+      result.className = 'mt-4 text-center';
 
       // Basic validation
       const requiredFields = form.querySelectorAll('[required]');
@@ -265,54 +275,53 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
         return;
       }
 
-      // Check for Turnstile token
-      waitForTurnstile(() => {
-        const turnstileResponse = form.querySelector('[name="cf-turnstile-response"]');
+      // Wait for Turnstile to be ready
+      await initTurnstile();
 
-        if (!turnstileResponse || !turnstileResponse.value) {
-          result.innerHTML = '<span class="text-red-500">Please complete the security check.</span>';
-          return;
-        }
+      // Check for Turnstile response
+      const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
 
-        // Disable submit button
-        submitButton.disabled = true;
-        submitButton.innerHTML = '<span>Sending...</span>';
+      if (!turnstileResponse || !turnstileResponse.value) {
+        result.innerHTML = '<span class="text-red-500">Please complete the security check.</span>';
+        return;
+      }
 
+      // Disable submit button
+      submitButton.disabled = true;
+      submitButton.querySelector('span').textContent = 'Sending...';
+
+      try {
         // Prepare form data
         const formData = new FormData(form);
 
         // Submit to Web3Forms
-        fetch('https://api.web3forms.com/submit', {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           body: formData,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              result.innerHTML =
-                '<span class="text-green-500">Thank you! Your message has been sent successfully.</span>';
-              form.reset();
+        });
 
-              // Reset Turnstile
-              if (window.turnstile) {
-                window.turnstile.reset();
-              }
-            } else {
-              throw new Error(data.message || 'Form submission failed');
-            }
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-            result.innerHTML =
-              '<span class="text-red-500">Sorry, there was an error sending your message. Please try again.</span>';
-          })
-          .finally(() => {
-            // Re-enable submit button
-            submitButton.disabled = false;
-            submitButton.innerHTML =
-              '<span>Contact Us</span><svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>';
-          });
-      });
+        const data = await response.json();
+
+        if (data.success) {
+          result.innerHTML = '<span class="text-green-500">Thank you! Your message has been sent successfully.</span>';
+          form.reset();
+
+          // Reset Turnstile
+          if (window.turnstile) {
+            window.turnstile.reset();
+          }
+        } else {
+          throw new Error(data.message || 'Form submission failed');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        result.innerHTML =
+          '<span class="text-red-500">Sorry, there was an error sending your message. Please try again.</span>';
+      } finally {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.querySelector('span').textContent = 'Contact us';
+      }
     });
   });
 </script>
