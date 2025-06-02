@@ -60,7 +60,7 @@ export const footerData = {
         { text: 'Home', href: getPermalink('/') },
         { text: 'About', href: getPermalink('/about') },
         { text: 'Services', href: getPermalink('/services') },
-        { text: 'Our Work', href: getPermalink('/work') },
+        { text: 'Our Work', href: getPermalink('/our-work') },
         { text: 'Blog', href: getBlogPermalink() },
         { text: 'Contact', href: getPermalink('/contact') },
       ],

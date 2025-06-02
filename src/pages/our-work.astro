@@ -11,9 +11,23 @@ import { projectGallery } from '~/data/projects/projects';
 import backgroundImage from '~/assets/images/projects/sodded-lawn-complete.png';
 
 const metadata = {
-  title: 'Our Work | Legacy Exteriors Projects in Windsor-Essex',
+  title: 'Legacy Exteriors Project Gallery Windsor - Excavation & Landscaping Work',
   description:
-    'Browse our portfolio of excavation, drainage, driveway, trenching, and landscape preparation projects throughout Windsor and Essex County.',
+    'See our completed excavation, drainage, landscaping & driveway projects across Windsor-Essex. Real results from satisfied customers.',
+  ignoreTitleTemplate: true,
+  openGraph: {
+    type: 'website',
+    title: 'Legacy Exteriors Project Gallery Windsor - Excavation & Landscaping Work',
+    description:
+      'See our completed excavation, drainage, landscaping & driveway projects across Windsor-Essex. Real results from satisfied customers.',
+    image: {
+      url: '~/assets/images/projects/basement-walkout-finished.png',
+      width: 1200,
+      height: 630,
+      alt: 'Legacy Exteriors - Professional Excavation Services',
+    },
+  },
+  canonical: 'https://legacyexteriorsinc.com/our-work',
 };
 
 // Initial number of items to show

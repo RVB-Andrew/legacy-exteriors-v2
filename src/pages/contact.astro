@@ -5,9 +5,24 @@ import ContactUs from '~/components/widgets/Contact.astro';
 import ContactPageInfo from '~/components/widgets/ContactPageInfo.astro';
 
 const metadata = {
-  title: 'Contact Legacy Exteriors | Windsor-Essex Professional Excavation & Landscaping',
+  title: 'Legacy Exteriors Contact Windsor - Free Excavation & Landscaping Quotes',
   description:
-    'Get in touch with Legacy Exteriors for your excavation, drainage, driveway, and landscaping needs in Windsor and Essex County. Call us at 519-791-1506 or fill out our contact form.',
+    'Get your free estimate for excavation, drainage, landscaping or site preparation in Windsor-Essex. Call today or request online quote.',
+  ignoreTitleTemplate: true,
+  openGraph: {
+    type: 'website',
+    url: 'https://legacyexteriorsinc.com/contact',
+    title: 'Legacy Exteriors Contact Windsor - Free Excavation & Landscaping Quotes',
+    description:
+      'Get your free estimate for excavation, drainage, landscaping or site preparation in Windsor-Essex. Call today or request online quote.',
+    image: {
+      url: '~/assets/images/contact/contact-hero.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'Contact Legacy Exteriors for Excavation and Landscaping Services',
+    },
+  },
+  canonical: 'https://legacyexteriorsinc.com/contact',
 };
 
 // Service areas - Windsor-Essex region cities and towns

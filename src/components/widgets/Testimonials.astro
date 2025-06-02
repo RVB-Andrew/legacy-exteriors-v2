@@ -132,7 +132,7 @@ const renderStars = (rating?: number) => {
     {testimonials.map((testimonial) => {
       const stars = renderStars(testimonial.rating);
       return (
-        <div class={`relative flex h-full flex-col p-6 bg-white dark:bg-transparent legacy-card rounded-xl overflow-hidden ${testimonial.highlight ? 'border-green-600/30' : 'border-gray-100 dark:border-gray-800'} transition-all duration-300 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade`}>
+        <div class={`relative flex h-full flex-col p-6 bg-white dark:bg-transparent rounded-xl overflow-hidden ${testimonial.highlight ? 'border-green-600/30' : 'border-gray-100 dark:border-gray-800'} transition-all duration-300 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade`}>
           {/* Decorative elements for landscaping theme */}
           {useLeafDecoration && (
             <>
