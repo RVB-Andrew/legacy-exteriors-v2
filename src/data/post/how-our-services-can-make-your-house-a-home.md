@@ -38,8 +38,6 @@ A well-constructed driveway is worth its weight in gold. No trips or stumbles wh
 
 Steps here include driveway installation, repair and resurfacing, sealcoating, and maintenance. We also offer environmentally friendly options, such as permeable pavers, which use a porous material or are simply spaced to allow stormwater to flow between the gaps. Drainage solutions are always in mind as we design your driveway.
 
-Want to learn more about driveways? [Check out our driveway solutions blog](https://www.legacyexteriorsinc.com/2024/05/20/driveway-repair-in-windsor/).
-
 **Landscaping Services**
 
 One service you might associate with Legacy Exteriors Inc. is landscaping. We’re lawn _artists_ who have helped many clients get that beautiful lawn they’ve been looking for; even if we’re starting from scratch, every property has potential. Our services are comprehensive, and the jobs we complete are finished with care and precision. It’s something _both_ parties can be proud of!

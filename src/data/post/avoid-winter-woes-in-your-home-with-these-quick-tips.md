@@ -19,7 +19,7 @@ No matter if it’s made from **gravel** or **pavement**, give your driveway the
 
 Undesirable objects, including plant debris and garbage, will block your drains. That leads to puddles that will eventually freeze. If the moisture reaches your driveway, you’re in big trouble – not only will this create slippery, dangerous ice patches if you’re off a major road, but it can lead to cracks and distress to your pavement or gravel base. There goes your budget for other landscaping work and holiday gifts! This issue is easily preventable.
 
-[**Check-Out Our Services!**](https://www.legacyexteriorsinc.com/exterior-home-solutions/)
+[**Check-Out Our Services!**](/services)
 
 **Protect your gravel driveway from winter’s worst by Regrading and Scarifying**
 

@@ -14,7 +14,7 @@ What’s the first thing you think of when you hear the word ‘basement’? Mus
 
 There’s no denying it’s an extra investment in your home, but it’s an investment with returns you’ll keep returning to. If you’re the entrepreneurial type or a budding landlord, it’s an easy way to make money in the short- and long-term. Even if you have no interest in doing business, **there are countless other advantages to a walkout basement**!
 
-Take the right steps in building your dream walkout basement … and trust the right team to make that dream come true. [**Legacy Exteriors Inc.**](https://www.legacyexteriorsinc.com/contact-us/) should be your first choice for your excavation and **professional** basement waterproofing needs; essential parts of the construction process that you can’t just skip. The amount of pre-planning, measurement, and physical labour involved makes this anything but a DIY job. Let’s start simple.
+Take the right steps in building your dream walkout basement … and trust the right team to make that dream come true. [**Legacy Exteriors Inc.**](/contact) should be your first choice for your excavation and **professional** basement waterproofing needs; essential parts of the construction process that you can’t just skip. The amount of pre-planning, measurement, and physical labour involved makes this anything but a DIY job. Let’s start simple.
 
 **What _is_ a walkout basement?**
 
@@ -24,7 +24,7 @@ That’s it … the rest, **you** get to define. You can have a finished, furnis
 
 There’s always a reason to add space to your home. Collectors and hobbyists know the struggle of needing ‘more room’. Multi-generational household families can feel cramped in a small house. Building a walkout basement may require some lifestyle changes and additional security measures and alarms if your home is protected, but the possibilities for entertaining, creating livable space, and _**MAKING MONEY**_ are endless.
 
-[**See some of our work!**](https://www.legacyexteriorsinc.com/our-project-gallery/)
+[**See some of our work!**](/our-work)
 
 **…Wait! How can I make _money_ with a walkout basement?**
 
@@ -50,7 +50,7 @@ Despite some lifestyle adjustments, the large windows will light up your new liv
 
 The team at Legacy Exteriors Inc. wants to bring down the house … literally. Make your basement an exciting new living area with help from the team at Legacy Exteriors Inc. Our experts have hundreds of hours of experience and use state-of-the-art tools and equipment, ensuring your land is excavated as neatly as possible, and your basement is properly sealed without hiccups down the line.
 
-You’re going to love working with us to _get_ your dream home. Click the **‘**[**Contact Us**](https://www.legacyexteriorsinc.com/contact-us/ "https://www.legacyexteriorsinc.com/contact-us/")**’** button in our site navigation bar for more information; call us at [**+1 (519) 791-1506**](tel:+15197911506 "tel:+15197911506"), or email us at [**info@legacyexteriorsinc.com**](mailto:info@legacyexteriorsinc.com "mailto:info@legacyexteriorsinc.com").
+You’re going to love working with us to _get_ your dream home. Click the **‘**[**Contact Us**](/contact)**’** button in our site navigation bar for more information; call us at [**+1 (519) 791-1506**](tel:+15197911506 "tel:+15197911506"), or email us at [**info@legacyexteriorsinc.com**](mailto:info@legacyexteriorsinc.com "mailto:info@legacyexteriorsinc.com").
 
 ## **Embark on Your Home Excavation Transformation Today**
 

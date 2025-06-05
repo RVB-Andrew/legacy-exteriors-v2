@@ -23,7 +23,7 @@ Excavation is Legacy Exterior Inc.’s specialty – we have the experience and 
 - If there is debris or damage to your lawn, it’s a good way to start over. Dead plants, sunken stones, and irredeemable soil? Not on our watch.
 - We also replace driveways to wipe out nasty potholes … and worse!
 
-[**See some of our work!**](https://www.legacyexteriorsinc.com/our-project-gallery/)
+[**See some of our work!**](/our-work)
 
 **Our equipment can handle it.**
 
@@ -46,7 +46,7 @@ We offer a full range of services, letting us complete projects from start to fi
 - Foundation excavation – the first step to many of our projects
 - Drainage system design to reduce standing water, which can freeze over this winter.
 - Basement waterproofing to protect your lower level from water damage and mold.
-- [The list doesn’t end there](https://www.legacyexteriorsinc.com/exterior-home-solutions/)!
+- [The list doesn’t end there](/services)!
 
 **We’re ready to _start_ _digging_.**
 

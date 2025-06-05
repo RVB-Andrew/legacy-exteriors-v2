@@ -27,7 +27,7 @@ At Legacy Exteriors, our team follows a meticulous process to deliver top-qualit
 2. **Land Clearing**: We remove any obstacles such as trees, rocks, or debris to create a smooth surface for grading.
 3. **Grading**: Using state-of-the-art equipment, we carefully grade your landscape to achieve the proper slope and drainage.
 4. **Levelling**: We ensure a level surface by compacting and adjusting the soil as needed.
-5. **Final Touches**: Once the grading and levelling are complete, we can help you choose the best landscaping elements to complement your new, levelled outdoor space. Check out our article about Sod [here](https://www.legacyexteriorsinc.com/2023/04/01/the-ultimate-guide-to-sod-benefits-maintenance-and-longevity/)!
+5. **Final Touches**: Once the grading and levelling are complete, we can help you choose the best landscaping elements to complement your new, levelled outdoor space. Check out our article about Sod [here](/the-ultimate-guide-to-sod-benefits-maintenance-and-longevity)!
 
 ## **Choose Legacy Exteriors for Your Grading and Levelling Needs**
 

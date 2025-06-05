@@ -39,4 +39,4 @@ Now that we've explored the key characteristics of both concrete and gravel driv
 
 **Let Us Help You Get Started**
 
-Legacy Exteriors is your number 1 choice for all your driveway needs. Our team is ready to transform your outdoor space with impeccable driveway installations, repairs, and maintenance services. Whether you prefer the sleek elegance of concrete or the rustic allure of gravel, we have the expertise to deliver exceptional results. [Contact us today](https://www.legacyexteriorsinc.com/contact-us/) for a free consultation, and let us pave the way to a stunning and functional driveway that will make a lasting impression.
+Legacy Exteriors is your number 1 choice for all your driveway needs. Our team is ready to transform your outdoor space with impeccable driveway installations, repairs, and maintenance services. Whether you prefer the sleek elegance of concrete or the rustic allure of gravel, we have the expertise to deliver exceptional results. [Contact us today](/contact) for a free consultation, and let us pave the way to a stunning and functional driveway that will make a lasting impression.

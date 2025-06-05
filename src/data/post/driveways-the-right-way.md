@@ -36,9 +36,9 @@ Installing gravel and concrete driveways shouldn’t be difficult from the get-g
 
 We’ve served our customers in Windsor and Essex County with quality work and peace of mind. No matter what you need for _your_ driveway, we’re here to help. Notice the signs and issues before your neighbours do. From the home value benefits to preventing a serious injury, it’s a win-win investment in your home you won’t regret. That is, you won’t regret it if you choose Legacy Exteriors Incorporated.
 
-(And hey, here are a few pointers for choosing between gravel and concrete in a whole other [**blog post**](https://www.legacyexteriorsinc.com/2023/07/06/choosing-the-perfect-driveway-concrete-vs-gravel/)! It’s bound to put some bounce in your step, without putting bounce any in your solid driveway!)
+(And hey, here are a few pointers for choosing between gravel and concrete in a whole other [**blog post**](/choosing-the-perfect-driveway-concrete-vs-gravel)! It’s bound to put some bounce in your step, without putting bounce any in your solid driveway!)
 
-Legacy Exteriors Inc. is home to the skilled crew that can make it happen. Driveways are one of our specialties, and one of our most popular services alongside excavation and yard improvement. Click the **‘[Contact Us](https://www.legacyexteriorsinc.com/contact-us/)’** button in our site navigation bar for more information; call us at [**+1 (519) 791-1506**](tel:+15197911506), or email us at [**info@legacyexteriorsinc.com**](mailto:info@legacyexteriorsinc.com). We’re excited to hear from you.
+Legacy Exteriors Inc. is home to the skilled crew that can make it happen. Driveways are one of our specialties, and one of our most popular services alongside excavation and yard improvement. Click the **‘[Contact Us](/contact)’** button in our site navigation bar for more information; call us at [**+1 (519) 791-1506**](tel:+15197911506), or email us at [**info@legacyexteriorsinc.com**](mailto:info@legacyexteriorsinc.com). We’re excited to hear from you.
 
 ## **Embark on Your Home Excavation Transformation Today**
 

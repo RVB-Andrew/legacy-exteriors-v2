@@ -23,11 +23,7 @@ There’s no need for seeds here: sod takes less time to take root. You just unr
 
 While it’s easy to install, your sod is more likely to establish itself beneath the soil if you avoid stepping on it for two weeks. No matter how small and light, pets should be kept off the lawn for two weeks as well. Urination can easily kill the sod. They may also dig holes – that’s _our_ job, Fido.
 
-[**See some of our work!**](https://www.legacyexteriorsinc.com/our-project-gallery/)
-
-**Did you know...**
-
-**The most common Sod in Windsor is Kentucky Bluegrass!**
+[**See some of our work!**](/our-work)
 
 **What are some other advantages to choosing sod?**
 
