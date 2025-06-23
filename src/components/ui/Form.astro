@@ -4,9 +4,6 @@ import { Icon } from 'astro-icon/components';
 
 const { inputs, textarea, disclaimer, button = 'Contact us', description = '', services = [] } = Astro.props;
 
-// Your Web3Forms Access Key
-const WEB3FORMS_ACCESS_KEY = 'a0ce7ea2-4ebd-49f8-bdc4-ddc760a8f371';
-
 // Default services if none provided
 const defaultServices = [
   { value: 'excavation', label: 'Excavation & Site Preparation', icon: 'tabler:bulldozer' },
@@ -23,12 +20,11 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
 
 <form
   id="contact-form"
+  data-netlify="true"
   class="relative p-4 rounded-lg border border-green-800/50 bg-[#050505] overflow-hidden"
   data-astro-reload
   novalidate
 >
-  <!-- Web3Forms required fields -->
-  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
 
   <!-- Honeypot Spam Protection -->
   <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
