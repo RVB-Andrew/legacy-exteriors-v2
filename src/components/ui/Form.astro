@@ -225,8 +225,8 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
   const submitButton = form.querySelector('button[type="submit"]');
 
   // Check form validity
-  if (!form.checkValidity()) {
-        form.classList.add('was-validated');
+  if (!myForm.checkValidity()) {
+        myForm.classList.add('was-validated');
         return;
       }
 
