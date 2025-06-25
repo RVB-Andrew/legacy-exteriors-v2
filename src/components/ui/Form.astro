@@ -224,6 +224,12 @@ const serviceOptions = services.length > 0 ? services : defaultServices;
   const result = document.getElementById('result');
   const submitButton = form.querySelector('button[type="submit"]');
 
+  // Check form validity
+  if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+
   fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
